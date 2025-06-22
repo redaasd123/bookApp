@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart' as transition;
-import 'package:preview_appp/Features/home/data/presentation/views/home_view.dart';
 import 'package:preview_appp/Features/splash/presentation/views/widget/sliding_text.dart';
 import 'package:preview_appp/constance.dart';
 import 'package:preview_appp/core/utils/assets.dart';
+
+import '../../../../home/presentation/views/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
