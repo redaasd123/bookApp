@@ -25,7 +25,7 @@ flutter:
   assets:
     - assets/images/
 #
-#  fonts:
-#    - family: BooklyFont
-#      fonts:
-#        - asset: assets/fonts/BebasNeue-Regular.ttf
+  fonts:
+    - family: GT Sectra Fine
+      fonts:
+        - asset: assets/fonts/GT Sectra Fine Regular.ttf
