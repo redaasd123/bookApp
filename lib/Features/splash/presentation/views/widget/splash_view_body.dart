@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart' as transition;
+import 'package:preview_appp/Features/home/data/presentation/views/home_view.dart';
 import 'package:preview_appp/Features/splash/presentation/views/widget/sliding_text.dart';
+import 'package:preview_appp/constance.dart';
 import 'package:preview_appp/core/utils/assets.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -19,16 +24,11 @@ with SingleTickerProviderStateMixin{
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this,
-    duration:  const Duration(seconds: 2));
-    slidingAnimation = Tween<Offset>(begin: Offset(0, 2)
-        ,end:Offset.zero ).animate(animationController);
+    initSlideAnimation();
+    navigateToHome();
+    //single Responsibility principle & refactor code
+      }
 
-    animationController.forward();
-
-    slidingAnimation.addListener((){
-    });
-  }
   @override
   void dispose() {
     // TODO: implement dispose
@@ -55,6 +55,25 @@ with SingleTickerProviderStateMixin{
         ],
       ),
     );
+  }
+
+  void initSlideAnimation() {
+    animationController = AnimationController(vsync: this,
+        duration:  const Duration(seconds: 2));
+    slidingAnimation = Tween<Offset>(begin: Offset(0, 2)
+        ,end:Offset.zero ).animate(animationController);
+
+    animationController.forward();
+
+    slidingAnimation.addListener((){
+    });
+
+  }
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds:  2,),(){
+      Get.to(() => const HomeView(),
+          transition:Transition.fade,duration:kTransitionDuration);
+    });
   }
 }
 
