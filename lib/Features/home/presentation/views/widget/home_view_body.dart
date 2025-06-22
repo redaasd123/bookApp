@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:preview_appp/core/utils/style.dart';
 import 'custom_appbar.dart';
-import 'custom_list_view_item.dart';
 import 'feature_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -13,7 +12,7 @@ class HomeViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment : CrossAxisAlignment.start,
         children: [
          const CustomAppBar(),
          const FeatureBooksListView(),
