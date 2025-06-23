@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:preview_appp/Features/splash/presentation/views/widget/sliding_text.dart';
 import 'package:preview_appp/constance.dart';
+import 'package:preview_appp/core/utils/app_router.dart';
 import 'package:preview_appp/core/utils/assets.dart';
 
 import '../../../../home/presentation/views/home_view.dart';
@@ -71,8 +73,10 @@ with SingleTickerProviderStateMixin{
   }
   void navigateToHome() {
     Future.delayed(const Duration(seconds:  2,),(){
-      Get.to(() => const HomeView(),
-          transition:Transition.fade,duration:kTransitionDuration);
+      // Get.to(() => const HomeView(),
+      //     transition:Transition.fade,
+      //     duration:kTransitionDuration);
+      GoRouter.of(context).push(AppRouter.kHomeView);
     });
   }
 }
