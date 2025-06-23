@@ -20,7 +20,7 @@ class PreViewApp extends StatelessWidget {
         textTheme: GoogleFonts.
         montserratTextTheme(ThemeData.dark().textTheme)
       ),
-      home: SplashView(),
+      home:const SplashView(),
     );
   }
 }
