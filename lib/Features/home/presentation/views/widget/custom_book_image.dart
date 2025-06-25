@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FeatureListViewItem extends StatelessWidget {
-  const FeatureListViewItem({super.key});
+class CustomBookImage extends StatelessWidget {
+  const CustomBookImage({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,7 +10,7 @@ class FeatureListViewItem extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 2.7/4,   //width ,height
             child: Container(
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: Colors.red,
                   image: DecorationImage(
