@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'custom_list_view_item.dart';
+import 'custom_book_image.dart';
 
 class FeatureBooksListView extends StatelessWidget {
   const FeatureBooksListView({super.key});
@@ -12,7 +12,7 @@ class FeatureBooksListView extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context,index){
-            return const FeatureListViewItem();
+            return const CustomBookImage();
           }),
     );
   }
