@@ -34,7 +34,6 @@ class BookActionButton extends StatelessWidget {
                 bottomRight: Radius.circular(12),
             ),
             onPressed: (){},
-
           ),
         ),
       ],

@@ -7,8 +7,8 @@ import 'package:preview_appp/core/utils/style.dart';
 import '../../../../../core/utils/assets.dart';
 import 'book_rating.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
@@ -53,13 +53,15 @@ class BestSellerListViewItem extends StatelessWidget {
                     maxLines: 2,
                     'j.k Rowling '),
                const SizedBox(height: 3,),
-                Row(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                   Text("19.99💲",
                   style: Style.textStyle20
                     .copyWith(
                     fontWeight: FontWeight.bold
                   ),),
-                  Spacer(),
+                    //Spacer(),
                   BookRating(),
                 ],),
 
