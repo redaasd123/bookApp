@@ -9,7 +9,7 @@ abstract class Failure{
  class ServerFailure extends Failure{
   ServerFailure({required super.errMessage});
 
-  factory ServerFailure.fromDioEroor(DioError dioError){
+  factory ServerFailure.fromDioError(DioError dioError){
 
    switch(dioError.type) {
      case DioExceptionType.connectionTimeout:
