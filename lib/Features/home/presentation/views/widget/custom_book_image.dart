@@ -1,25 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:preview_appp/Features/home/data/model/BookModel.dart';
+import 'package:preview_appp/core/utils/widget/custom_progress_indicator.dart';
 
 class CustomBookImage extends StatelessWidget {
-  const CustomBookImage({super.key});
+  const CustomBookImage({super.key,required this.imageUrl});
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: AspectRatio(
-            aspectRatio: 2.6/4,   //width ,height
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.red,
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage('https://plus.unsplash.com/premium_photo-1675432656807-216d786dd468?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YW5pbWFsfGVufDB8fDB8fHww'))
-              ),
-            ),
-        ));
-
-
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(15),
+            child: AspectRatio(
+              aspectRatio: 2.6/4,   //width ,height
+              child: CachedNetworkImage(
+                placeholder: (context, url) =>
+                const Center(child:CustomProgressIndicator() ,),
+                  fit: BoxFit.fill,
+                  imageUrl: imageUrl,
+              errorWidget:(context, url, error) => const
+                Icon(Icons.error),),
+                    ),
+          ));
   }
 }

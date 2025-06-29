@@ -9,7 +9,7 @@ final class NewestBooksSuccess extends NewestBooksState {
   List<BookModel> books;
   NewestBooksSuccess(this.books);
 }
-final class FeaturedBooksFailure extends NewestBooksState {
+final class NewestBooksFailure extends NewestBooksState {
   final String errMessage;
-  FeaturedBooksFailure(this.errMessage);
+  NewestBooksFailure(this.errMessage);
 }
