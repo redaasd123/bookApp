@@ -20,7 +20,8 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48,
-      child: TextButton(onPressed: onPressed,
+      child: TextButton(
+          onPressed: onPressed,
           style: TextButton.styleFrom(
             backgroundColor: backGroundColor,
             shape: RoundedRectangleBorder(

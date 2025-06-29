@@ -184,6 +184,7 @@ class SearchInfo {
 class VolumeInfo {
   String title;
   String? publishedDate;
+  List<String>? authors; // ✅ أضفنا دي
   List<IndustryIdentifier> industryIdentifiers;
   ReadingModes readingModes;
   int? pageCount;
@@ -198,12 +199,13 @@ class VolumeInfo {
   String previewLink;
   String infoLink;
   String canonicalVolumeLink;
-  double? averageRating; // ✅ التقييم
-  int? ratingsCount;     // ✅ عدد المراجعات
+  double? averageRating;
+  int? ratingsCount;
 
   VolumeInfo({
     required this.title,
     required this.publishedDate,
+    required this.authors, // ✅ هنا كمان
     required this.industryIdentifiers,
     required this.readingModes,
     required this.pageCount,
@@ -225,6 +227,9 @@ class VolumeInfo {
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json["title"],
     publishedDate: json["publishedDate"],
+    authors: json["authors"] == null
+        ? []
+        : List<String>.from(json["authors"]), // ✅ هنا
     industryIdentifiers: List<IndustryIdentifier>.from(
         json["industryIdentifiers"].map((x) => IndustryIdentifier.fromJson(x))),
     readingModes: ReadingModes.fromJson(json["readingModes"]),
@@ -232,7 +237,7 @@ class VolumeInfo {
     printType: json["printType"],
     categories: json["categories"] == null
         ? []
-        : List<String>.from(json["categories"].map((x) => x)),
+        : List<String>.from(json["categories"]),
     maturityRating: json["maturityRating"],
     allowAnonLogging: json["allowAnonLogging"],
     contentVersion: json["contentVersion"],
@@ -251,12 +256,13 @@ class VolumeInfo {
   Map<String, dynamic> toJson() => {
     "title": title,
     "publishedDate": publishedDate,
+    "authors": authors, // ✅ هنا
     "industryIdentifiers":
     List<dynamic>.from(industryIdentifiers.map((x) => x.toJson())),
     "readingModes": readingModes.toJson(),
     "pageCount": pageCount,
     "printType": printType,
-    "categories": List<dynamic>.from(categories!.map((x) => x)),
+    "categories": categories,
     "maturityRating": maturityRating,
     "allowAnonLogging": allowAnonLogging,
     "contentVersion": contentVersion,
@@ -270,6 +276,7 @@ class VolumeInfo {
     "ratingsCount": ratingsCount,
   };
 }
+
 
 class ImageLinks {
   String smallThumbnail;

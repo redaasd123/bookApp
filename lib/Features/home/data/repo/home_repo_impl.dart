@@ -14,7 +14,8 @@ class HomeRepoImpl extends HomeRepo{
   Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
 
     try {
-      var data = await apiService.get(endPoint: 'volumes?Filtering=free-ebooks&Sorting=newest&q=subject:programming');
+      var data = await apiService.get(endPoint:
+      'volumes?Filtering=free-ebooks&Sorting=newest&q=subject:programming');
 
       List<BookModel> books = [];
       if (data['items'] != null && data['items'] is List) {
@@ -34,7 +35,7 @@ class HomeRepoImpl extends HomeRepo{
   Future<Either<Failure, List<BookModel>>> fetchNewsetBooks()async {
     try {
       var data = await apiService.
-      get(endPoint:'volumes?Filtering=free-ebooks&Sorting=newest&q=subject:programming');
+      get(endPoint:'volumes?Filtering=free-ebooks&Sorting=newest&q=computer science');
 
       List<BookModel> books = [];
       if (data['items'] != null && data['items'] is List) {
@@ -49,7 +50,30 @@ class HomeRepoImpl extends HomeRepo{
       }
       return left(ServerFailure(errMessage: e.toString()));
     }
+  }
+
+  @override
+  Future<Either<Failure, List<BookModel>>> fetchSimilarBooks({required String category})async {
+    try {
+      var data = await apiService.
+      get(endPoint:
+      'volumes?Filtering=free-ebooks&Sorting=relevance&q=computer science');
+
+      List<BookModel> books = [];
+      if (data['items'] != null && data['items'] is List) {
+        for (var item in data['items']) {
+          books.add(BookModel.fromJson(item));
+        }
+      }
+      return right(books);
+    } on Exception catch (e) {
+      if (e is DioError) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
   }}
+
 
 
 
