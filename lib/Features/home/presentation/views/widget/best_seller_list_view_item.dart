@@ -14,70 +14,74 @@ import 'book_rating.dart';
 class BookListViewItem extends StatelessWidget {
   const BookListViewItem({super.key, required this.bookModel});
 
- final BookModel bookModel;
+  final BookModel bookModel;
+
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
-      onTap: (){
+    return GestureDetector(
+      onTap: () {
         GoRouter.of(context).push(AppRouter.kBookDetailsView, extra: bookModel);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height *.2,
+            height: MediaQuery.of(context).size.height * .2,
             child: AspectRatio(
-              aspectRatio: 2.5/4,
+              aspectRatio: 2.5 / 4,
               child: CustomBookImage(
-                  imageUrl: bookModel.volumeInfo.imageLinks!.thumbnail),
+                imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ??'',
+              ),
             ),
           ),
-          const SizedBox(width: 30,),
-           Expanded(
-             child: Column(
+          const SizedBox(width: 30),
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:  [
-                 SizedBox(
-                  width: MediaQuery.of(context).size.width *.5,
-                    child:   Text(
-                      style: Style.textStyle20.copyWith(
-                        fontFamily: kGtsectraFine
-                      ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        bookModel.volumeInfo.title)),
-                const SizedBox(height: 3,),
-                Text(bookModel.volumeInfo.authors?.isNotEmpty ==true
-                  ? bookModel.volumeInfo.authors!.first
-                    : "الكاتب غير معروف"
-                  ,style: Style.textStyle14,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: Text(
+                    bookModel.volumeInfo.title ?? "عنوان غير متوفر",
+                    style: Style.textStyle20.copyWith(fontFamily: kGtsectraFine),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  bookModel.volumeInfo.authors?.isNotEmpty == true
+                      ? bookModel.volumeInfo.authors!.first
+                      : "الكاتب غير معروف",
+                  style: Style.textStyle14,
                   maxLines: 2,
-                  overflow: TextOverflow.ellipsis,)
-
-                ,const SizedBox(height: 3,),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 3),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                  Text("Free",
-                  style: Style.textStyle20
-                    .copyWith(
-                    fontWeight: FontWeight.bold
-                  ),),
-                    //Spacer(),
-                    BookRating(
-                      rating: bookModel.volumeInfo.ratingsCount ?? 0 , // لو مفيش تقييم نحط 0
-                      count: bookModel.volumeInfo.ratingsCount ?? 0,    // لو مفيش عدد مراجعات نحط 0
+                    Text(
+                      "Free",
+                      style: Style.textStyle20.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                ],),
-
+                    BookRating(
+                      rating: (bookModel.volumeInfo.averageRating ?? 0).toInt(),
+                      count: bookModel.volumeInfo.ratingsCount ?? 0,
+                    )
+                  ],
+                ),
               ],
-                     ),
-           )
+            ),
+          ),
         ],
       ),
     );
   }
 }
+
 
 
 

@@ -72,7 +72,8 @@ class HomeRepoImpl extends HomeRepo{
       }
       return left(ServerFailure(errMessage: e.toString()));
     }
-  }}
+  }
+}
 
 
 

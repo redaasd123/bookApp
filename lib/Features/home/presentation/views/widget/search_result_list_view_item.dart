@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:preview_appp/Features/home/data/model/BookModel.dart';
+
+import 'best_seller_list_view_item.dart';
+
 class SearchResultListViewItem extends StatelessWidget {
-  const SearchResultListViewItem({super.key});
+  final BookModel bookModel; // استقباله هنا عادي
+
+  const SearchResultListViewItem({super.key, required this.bookModel}); // بدون required
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +17,7 @@ class SearchResultListViewItem extends StatelessWidget {
               (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 9.0),
-             // child: const BookListViewItem(),
+              child: BookListViewItem(bookModel: bookModel),
             );
           },
           childCount: 10,
